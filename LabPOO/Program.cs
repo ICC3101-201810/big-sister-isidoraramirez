@@ -11,8 +11,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace LabPOO
 {
     public delegate void RevisarProducto(bool product);
-
-    class Program: ISerializable
+    [Serializable]
+    class Program
     {
         public static List<Product> cart;
         public static List<Product> market;
