@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace LabPOO
 {
+
     class Product
     {
+
+        
         private string name;
         private int stock;
         private int price; //Price for one unit of the product
@@ -36,5 +39,21 @@ namespace LabPOO
         public int Stock { get => stock; }
         public int Price { get => price; }
         public string Unit { get => unit; }
+
+       
+
+        public bool Chequear(List<string> reseta, Product carrito)
+        {
+            if (reseta.Contains(carrito.name))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+               
+            }
+        }
+        
     }
 }

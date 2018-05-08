@@ -7,15 +7,35 @@ using System.Threading.Tasks;
 
 namespace LabPOO
 {
+    public delegate void RevisarProducto(bool product);
+
     class Program
     {
         public static List<Product> cart;
         public static List<Product> market;
-
+        public static List<string> reseta;
         static void Main(string[] args)
         {
+
+
+            reseta = new List<string>();
             cart = new List<Product>();
             market = new List<Product>();
+            reseta.Add("Láminas de Lasaña");
+            reseta.Add("Queso Rallado Parmesano");
+            reseta.Add("Mantequilla");
+            reseta.Add("Carne Molida");
+            reseta.Add("Vino Sauvignon Blanc Reserva Botella");
+            reseta.Add("Vino Blanco Caja");
+            reseta.Add("Tomates Pelados en lata");
+            reseta.Add("Bolsa de Zanahorias");
+            reseta.Add("Malla de Cebollas");
+            reseta.Add("Aceite de Oliva");
+            reseta.Add("Pimienta");
+            reseta.Add("Sal Lobos");
+            reseta.Add("Mantequilla");
+            reseta.Add("Harina");
+            reseta.Add("Leche Entera");
             SupplyStore();
             while (true)
             {
@@ -92,7 +112,7 @@ namespace LabPOO
                     {
                         continue;
                     }
-                    AddToCart(market[answer]);
+                    AddToCart(market[answer], reseta);
                     break;
                 }
                 catch
@@ -129,9 +149,19 @@ namespace LabPOO
             Console.WriteLine("\t\t LIDER\n");
         }
 
-        public static bool AddToCart(Product product)
+       
+
+        public static bool AddToCart(Product product, List<string> reseta)
         {
-            return product.Agregar(cart);
+            if (product.Chequear(reseta, product) == true)
+            {
+                return product.Agregar(cart);
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         public static void SupplyStore()
@@ -160,6 +190,7 @@ namespace LabPOO
             market.Add(new Product("Queso Parmesano", 3790, 41, "200g"));
             market.Add(new Product("Bolsa de Zanahorias", 890, 74, "1un"));
         }
+
 
         public static void ShowRecipe()
         {
