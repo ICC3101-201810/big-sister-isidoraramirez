@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LabPOO
 {
     public delegate void RevisarProducto(bool product);
 
-    class Program
+    class Program: ISerializable
     {
         public static List<Product> cart;
         public static List<Product> market;
@@ -71,6 +74,10 @@ namespace LabPOO
                     }
                     else if (answer == "5")
                     {
+                        BinaryFormatter bf = new BinaryFormatter();
+                        Stream stream = new FileStream("Carro.bin", FileMode.Create, FileAccess.Write);
+                        bf.Serialize(stream, cart);
+                        stream.Close();
                         Environment.Exit(1);
                     }
                 }
