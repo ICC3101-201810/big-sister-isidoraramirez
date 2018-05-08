@@ -20,6 +20,14 @@ namespace LabPOO
         static void Main(string[] args)
         {
 
+            using (Stream stream1 = new FileStream("Carro.bin", FileMode.Open, FileAccess.Read))
+            {
+                BinaryFormatter bin = new BinaryFormatter();
+                try { cart = (List<Product>)bin.Deserialize(stream1); }
+                catch { }
+
+            }
+
 
             reseta = new List<string>();
             cart = new List<Product>();
